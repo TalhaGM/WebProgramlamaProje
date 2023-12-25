@@ -1,0 +1,69 @@
+﻿@{
+    Layout = $"~/Views/Shared/_KullaniciLayout.cshtml";
+}
+
+
+<html>
+<head>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/UyeOl.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SkyWander_Airlines.styles.css" asp-append-version="true" />
+
+</head>
+
+<body>
+
+
+    @* <div id="arkaPlan-2"> </div> *@
+
+    <div class="form">
+        <form class="row g-3 alan" asp-action="BiletAl" asp-controller="Hizmetler" method="post">
+            <label style="text-align:center; font-weight:600;font-size:20px">Bilet Satın Al</label>
+
+            <div class="col-md-6">
+                <label for="nereden" class="form-label">Nereden</label>
+                <select id="nereden" name="Nereden" class="form-select" required>
+                    <option value="Ankara" selected>Ankara</option>
+                    <option value="Berlin">Berlin</option>
+                    <option value="Washington">Washington</option>
+                    <option value="Moskova">Moskova</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label for="nereye" class="form-label">Nereye</label>
+                <select id="nereye" name="Nereye" class="form-select" required>
+                    <option value="Ankara">Ankara</option>
+                    <option value="Berlin" selected>Berlin</option>
+                    <option value="Washington">Washington</option>
+                    <option value="Moskova">Moskova</option>
+                </select>
+            </div>
+
+            <div class="col-6">
+                <label for="tarih" class="form-label">Tarih</label>
+                <input type="date" class="form-control" id="tarih" name="Tarih" required>
+            </div>
+
+            <div class="col-md-6">
+                <label for="yolcu" class="form-label">Yolcu</label>
+                <select id="yolcu" name="Yolcu" class="form-select" required>
+                    <option value="Yetişkin" selected>Yetişkin</option>
+                    <option value="Öğrenci">Öğrenci</option>
+                </select>
+            </div>
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Uçus Ara</button>
+            </div>
+
+
+        </form>
+    </div>
+
+
+
+</body>
+
+</html>

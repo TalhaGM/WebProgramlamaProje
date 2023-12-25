@@ -1,0 +1,88 @@
+﻿@{
+    ViewData["Title"] = "Üyeleri Listele";
+    Layout = $"~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script>
+    async function uyeleriGetir() {
+
+        const response = await fetch('http://localhost:5279/api/AdminApi/Uyeler');
+        if (response.ok) {
+            const uyeler = await response.json();
+            const uyelerTablo = document.getElementById('uyelerTablo');
+            uyelerTablo.innerHTML = ''; // Mevcut içeriği temizle
+            uyeler.forEach(uye => {
+                uyelerTablo.innerHTML += `
+                            <tr>
+                                <td>${uye.id}</td>
+                                <td>${uye.ad}</td>
+                                <td>${uye.soyad}</td>
+                                <td>${uye.telefon}</td>
+                                <td>${uye.dogumTarihi}</td>
+                                <td>${uye.email}</td>
+                                <td>${uye.sifre}</td>
+                                <td>${uye.ulke}</td>
+                                <td>${uye.sehir}</td>
+                                <td>${uye.adres}</td>
+                                <td>
+                                    <button onclick="uyeSil(${uye.id})">Sil</button>
+                                </td>
+
+
+                            </tr>
+                        `;
+            });
+        } else {
+            console.error('Üyeler getirilemedi');
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        uyeleriGetir();
+    });
+
+
+</script>
+
+<script>
+    async function uyeSil(id) {
+        if (!confirm("Bu üyeyi silmek istediğinizden emin misiniz?")) return;
+
+        const response = await fetch(`http://localhost:5279/api/AdminApi/UyeSil/${id}`, {
+            method: 'DELETE',
+        });
+
+        if (response.ok) {
+            alert("Üye başarıyla silindi.");
+            uyeleriGetir(); // Listeyi yeniden yükle
+        } else {
+            alert("Üye silinirken bir hata oluştu.");
+        }
+    }
+
+</script>
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Telefon</th>
+            <th>Doğum Tarihi</th>
+            <th>Email</th>
+            <th>Şifre</th>
+            <th>Ülke</th>
+            <th>Şehir</th>
+            <th>Adres</th>
+            <th>Üyeyi Sil</th>
+        </tr>
+
+    </thead>
+    <tbody id="uyelerTablo">
+        <!-- JavaScript ile doldurulacak -->
+    </tbody>
+</table>
+

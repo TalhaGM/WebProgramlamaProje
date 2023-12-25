@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "Seferleri Düzenle";
+    Layout = $"~/Views/Shared/_AdminLayout.cshtml";
+
+}
+
+<script>
+    async function seferleriGetir() {
+
+        const response = await fetch('http://localhost:5279/api/AdminApi/Rota');
+        if (response.ok) {
+            const seferler = await response.json();
+            const RotaTablo = document.getElementById('RotaTablo');
+            RotaTablo.innerHTML = ''; // Mevcut içeriği temizle
+            seferler.forEach(rota => {
+                RotaTablo.innerHTML += `
+                      <tr>
+                          <td>${rota.id}</td>
+                          <td>${rota.nereden}</td>
+                          <td>${rota.nereye}</td>
+                          <td>${rota.tarih}</td>
+                          <td>${rota.kapasite}</td>
+                          <td>${rota.kalkisZamani}</td>
+                          <td>${rota.varisZamani}</td>
+                          <td>${rota.ucakTipi}</td>
+                          <td>
+                                  <button onclick="SeferiIptalEt(${rota.id})">Sil</button>
+                          </td>
+                      </tr>
+                     `;
+            });
+        } else {
+            console.error('Sefer Bilgileri Getirilemedi');
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        seferleriGetir();
+    });
+
+
+</script>
+
+<script>
+              
+    async function SeferiIptalEt(id) {
+        if (!confirm("Bu Seferi İptal Etmek İstediğinizden Emin Misiniz?")) return;
+
+        const response = await fetch(`http://localhost:5279/api/AdminApi/SeferiIptalEt/${id}`, {
+            method: 'DELETE',
+        });
+
+        if (response.ok) {
+            alert("Sefer İptal Edildi.");
+            seferleriGetir(); // Listeyi yeniden yükle
+        } else {
+            alert("Sefer iptal edilirken bir hata oluştu.");
+        }
+    }
+
+</script>
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nereden</th>
+            <th>Nereye</th>
+            <th>Tarih</th>
+            <th>Kapasite</th>
+            <th>Kalkış Zamanı</th>
+            <th>Varış Zamanı</th>
+            <th>Uçak Tipi</th>
+            <th>Seferi İptal Et</th>
+        </tr>
+
+    </thead>
+    <tbody id="RotaTablo">
+        <!-- JavaScript ile doldurulacak -->
+    </tbody>
+</table>
+

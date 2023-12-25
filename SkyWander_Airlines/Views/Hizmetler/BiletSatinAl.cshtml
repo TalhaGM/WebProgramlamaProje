@@ -1,0 +1,271 @@
+﻿@{
+    Layout = $"~/Views/Shared/_KullaniciLayout.cshtml";
+}
+
+@model Rota
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/UyeOl.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SkyWander_Airlines.styles.css" asp-append-version="true" />
+    <title>Flight Card</title>
+    <link rel="stylesheet" href="styles.css">
+
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .tam {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 10px;
+        }
+
+        .sol {
+            display: flex;
+            justify-content: flex-start;
+            margin-left: 7%;
+            padding: 20px;
+        }
+
+        .sol, .sag {
+            border: 1px solid #ddd;
+            width:auto;
+            flex: 1;
+        }
+
+
+        .zaman {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .bilgi {
+            text-align: center;
+        }
+
+        .plane-icon {
+            display: block;
+        }
+
+        .kalkis .time, .varis .time {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .kalkis .yer, .varis .yer {
+            font-weight: bold;
+        }
+
+        .kalkis .city, .varis .city {
+            font-size: 12px;
+        }
+
+        .link {
+            text-decoration: none;
+            color: white;
+        }
+
+            .link:hover {
+                color: red;
+            }
+
+
+        .sag {
+            display: flex;
+            justify-content: flex-end;
+            margin-right: 7%;
+        }
+
+        .ucak {
+            border-radius: 5px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .sira {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .koltuk {
+            background: #f7f7f7;
+            border: 1px solid #ddd;
+            padding: 15px 15px;
+            margin-right: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .seat.selected {
+            background-color: #5eba7d;
+            color: #fff;
+        }
+
+        .seat.occupied {
+            background-color: #ff6666;
+            color: #fff;
+            cursor: not-allowed;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="tam">
+        <div class="sol">
+            <div>
+                <div class="zaman">
+                    <div class="kalkis">
+                        <span class="time">@Model.KalkisZamani</span>
+                        <span class="yer">@Model.Nereden</span>
+                    </div>
+
+                    <div class="bilgi">
+                        <span class="direct">Direkt</span>
+                        <span class="plane-icon">✈️</span>
+                    </div>
+
+                    <div class="varis">
+                        <span class="time">@Model.VarisZamani</span>
+                        <span class="yer">@Model.Nereye</span>
+                    </div>
+                </div>
+                <div class="flight-details">
+                    @{
+                        TimeSpan fark = Model.VarisZamani - Model.KalkisZamani;
+                        string ucusSuresi = String.Format("{0}s {1}dk", fark.Hours, fark.Minutes);
+                    }
+                    <span>Uçuş Tarihi: @Model.Tarih.ToString("dd.MM.yyyy")</span>
+                    <span>Uçuş Süresi: @ucusSuresi</span>
+                </div>
+                <div>
+                    <span>Uçak tipi: @Model.UcakTipi</span>
+
+                </div>
+                <hr />
+                <div class="form">
+                    <form class="row g-3" asp-action="BiletSatinAl" asp-controller="Hizmetler" method="post">
+
+                        <input type="hidden" name="RotaId" value="@Model.ID" />
+                        <input type="hidden" name="VarisZamani" value="@Model.VarisZamani" />
+                        <label style="text-align:center; font-weight:600;font-size:20px;">Yolcu Bilgileri</label>
+                        <div class="col-6">
+                            <label for="Ad" class="form-label">Ad</label>
+                            <input type="text" class="form-control" id="Ad" name="Ad" placeholder="Yolcunun Adını Giriniz." required>
+                        </div>
+                        <div class="col-6">
+                            <label for="Soyad" class="form-label">Soyad</label>
+                            <input type="text" class="form-control" id="Soyad" name="Soyad" placeholder="Yolcunun Soyadını Giriniz." required>
+                        </div>
+                        <div class="col-6">
+                            <label for="Telefon" class="form-label">Telefon</label>
+                            <input type="text" class="form-control" id="Telefon" name="Telefon" placeholder="Yolcunun Telefon Numarasını Giriniz." required>
+                        </div>
+
+                        <div class="col-6">
+                            <label for="Yas" class="form-label">Doğum Tarihi</label>
+                            <input type="date" class="form-control" id="Yas" name="DogumTarihi" required>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <label for="inputEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="inputEmail" name="Email" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="koltukNumarasi" class="form-label">Koltuk</label>
+                            <input type="text" class="form-control" id="koltukNumarasi" name="KoltukNumarasi" required>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="inputAddress" class="form-label">Adres</label>
+                            <input type="text" class="form-control" id="inputAddress" name="Adres" placeholder="Yolcunun Adres Bilgisini giriniz." required>
+                        </div>
+
+
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="gridCheck" required>
+                                <label class="form-check-label" for="gridCheck">
+                                    Okudum, onaylıyorum.
+                                </label>
+                            </div>
+                        </div>
+
+
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary">BİLETİ SATIN AL</button>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="sag">
+            <div class="ucak">
+                <div>
+                @for (int i = 1; i <= Model.Kapasite; i++)
+                {
+                    <div class="sira">
+                        <button class="koltuk seat" id="seat-@(i)A">@(i)A</button>
+                        <button class="koltuk seat" id="seat-@(i)B">@(i)B</button>
+                        <button class="koltuk seat" id="seat-@(i)C">@(i)C</button>
+                        <button class="koltuk seat" id="seat-@(i)D">@(i)D</button>
+                        <button class="koltuk seat" id="seat-@(i)E">@(i)E</button>
+                        <button class="koltuk seat" id="seat-@(i)F">@(i)F</button>
+                    </div>
+                }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @{
+        var secilenKoltuklar = ViewBag.SecilenKoltuklar as List<string>;
+    }
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const secilenKoltuklar = @Html.Raw(Json.Serialize(ViewBag.SecilenKoltuklar)) || [];
+            const seats = document.querySelectorAll('.seat');
+            const selectedSeatInput = document.getElementById('koltukNumarasi');
+
+            seats.forEach(seat => {
+                // Eğer koltuk zaten seçilmişse, engelle
+                if (secilenKoltuklar.includes(seat.textContent.trim())) {
+                    seat.classList.add('occupied');
+                    seat.disabled = true;
+                }
+
+                seat.addEventListener('click', event => {
+                    if (seat.classList.contains('occupied')) return;
+
+                    seats.forEach(s => s.classList.remove('selected'));
+                    seat.classList.add('selected');
+                    selectedSeatInput.value = seat.textContent.trim();
+                });
+            });
+        });
+
+    </script>
+
+
+
+</body>
+</html>

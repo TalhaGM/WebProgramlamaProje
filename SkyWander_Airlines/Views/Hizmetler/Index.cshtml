@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Giriş Yap";
+    Layout = $"~/Views/Shared/_KullaniciLayout.cshtml";
+}
+    
+@if (ViewBag.IptalBildirim != null)
+{
+    <div class="alert alert-warning">
+        @Html.Raw(ViewBag.IptalBildirim)
+    </div>
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <section id="arkaPlan">
+    </section>
+</body>
+</html>

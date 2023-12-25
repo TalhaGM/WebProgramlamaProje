@@ -1,0 +1,172 @@
+﻿@{
+    Layout = $"~/Views/Shared/_KullaniciLayout.cshtml";
+}
+
+
+@model BiletBilgisi
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/UyeOl.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SkyWander_Airlines.styles.css" asp-append-version="true" />
+    <title>Flight Card</title>
+    <link rel="stylesheet" href="styles.css">
+
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .alan {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            width: 600px;
+            margin: 20px auto;
+        }
+
+        .zaman {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .bilgi {
+            text-align: center;
+        }
+
+        .plane-icon {
+            display: block;
+        }
+
+        .kalkis .time, .varis .time {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .kalkis .yer, .varis .yer {
+            font-weight: bold;
+        }
+
+        .kalkis .city, .varis .city {
+            font-size: 12px;
+        }
+
+        .link {
+            text-decoration: none;
+            color: white;
+        }
+
+            .link:hover {
+                color: red;
+            }
+
+
+        .seat.selected {
+            background-color: #5eba7d;
+            color: #fff;
+        }
+
+        .seat.occupied {
+            background-color: #ff6666;
+            color: #fff;
+            cursor: not-allowed;
+        }
+
+        #yolcu {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            display:flex;
+            justify-content:center;
+        }
+
+            #yolcu td, #yolcu th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #yolcu tr:hover {
+                background-color: red;
+            }
+
+            #yolcu th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                color: black;
+            }
+            .bosluk{
+                margin:20px auto;
+            }
+    </style>
+
+</head>
+<body>
+
+    <div class="alan">
+        <div class="zaman">
+            <div class="kalkis">
+                <span class="time">@Model.KalkisZamani</span>
+                <span class="yer">@Model.Nereden</span>
+            </div>
+
+            <div class="bilgi">
+                <span class="direct">Direkt</span>
+                <span class="plane-icon">✈️</span>
+            </div>
+
+            <div class="varis">
+                <span class="time">@Model.VarisZamani</span>
+                <span class="yer">@Model.Nereye</span>
+            </div>
+        </div>
+        <div class="flight-details">
+            @{
+                TimeSpan fark = Model.VarisZamani - Model.KalkisZamani;
+                string ucusSuresi = String.Format("{0}s {1}dk", fark.Hours, fark.Minutes);
+            }
+            <span>Uçuş Tarihi: @Model.Tarih.ToString("dd.MM.yyyy")</span>
+            <span>Uçuş Süresi: @ucusSuresi</span>
+        </div>
+        <div>
+            <span>Uçak tipi: @Model.UcakTipi</span>
+
+        </div>
+    </div>
+    <hr />
+    <div class="bosluk">
+        <table id="yolcu">
+            <tr>
+                <th>Yolcu Adı</th>
+                <th>Yolcu Soyadı</th>
+                <th>Yolcu Telefonu</th>
+                <th>Yolcu Doğum Tarihi</th>
+                <th>Yolcu E-Maili</th>
+                <th>Yolcu Adresi</th>
+                <th>Koltuk Numarası</th>
+            </tr>
+            <tr>
+                <td>@Model.Ad</td>
+                <td>@Model.Soyad</td>
+                <td>@Model.Telefon</td>
+                <td>@Model.DogumTarihi</td>
+                <td>@Model.Email</td>
+                <td>@Model.Adres</td>
+                <td>@Model.KoltukNumarasi</td>
+            </tr>
+
+        </table>
+    </div>
+  
+
+</body>
+</html>

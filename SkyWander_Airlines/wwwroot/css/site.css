@@ -1,0 +1,54 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+#arkaPlan {
+    background-image: url("../resimler/resim.png");
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100%;
+    height: 500px;
+}
+
+ul .nav-item {
+    font-weight: 400;
+    font-size: 20px;
+}
+
+ul a{
+    font-size:24px;
+    font-weight:400
+}
+
+.navbar-brand {
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.nav-item .btn {
+    align-self: center; 
+    margin-top:5px;
+    margin-left:10px;
+    margin-right:10px;
+    
+}
+

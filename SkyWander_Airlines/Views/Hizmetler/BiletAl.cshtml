@@ -1,0 +1,143 @@
+﻿@{
+    Layout = $"~/Views/Shared/_KullaniciLayout.cshtml";
+}
+
+@model List<Rota>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/UyeOl.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SkyWander_Airlines.styles.css" asp-append-version="true" />
+    <title>Flight Card</title>
+    <link rel="stylesheet" href="styles.css">
+
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .tam {
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .sol {
+            display: flex;
+            justify-content: flex-start;
+            margin-left: 10%;
+        }
+
+        .sol, .sag {
+            flex: 1;
+        }
+
+        .alan {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            width: 600px;
+            margin: 20px auto;
+        }
+
+        .zaman {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .bilgi {
+            text-align: center;
+        }
+
+        .plane-icon {
+            display: block;
+        }
+
+        .kalkis .time, .varis .time {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .kalkis .yer, .varis .yer {
+            font-weight: bold;
+        }
+
+        .kalkis .city, .varis .city {
+            font-size: 12px;
+        }
+
+        .link {
+            text-decoration: none;
+            color: white;
+        }
+
+            .link:hover {
+                color: red;
+            }
+
+    </style>
+
+</head>
+<body>
+
+    @{
+        string nereden = TempData["Nereden"]?.ToString();
+        string nereye = TempData["Nereye"]?.ToString();
+        DateTime tarih = Convert.ToDateTime(TempData["Tarih"]);
+    }
+
+    @foreach (var rota in Model)
+    {
+        if (rota.Nereden == nereden && rota.Nereye == nereye && rota.Tarih == tarih)
+        {
+            <a href="@Url.Action("BiletSatinAl", "Hizmetler", new { id = rota.ID })" class="link">
+                <div class="alan">
+                    <div class="zaman">
+                        <div class="kalkis">
+                            <span class="time">@rota.KalkisZamani</span>
+                            <span class="yer">@rota.Nereden</span>
+                        </div>
+
+                        <div class="bilgi">
+                            <span class="direct">Direkt</span>
+                            <span class="plane-icon">✈️</span>
+                        </div>
+
+                        <div class="varis">
+                            <span class="time">@rota.VarisZamani</span>
+                            <span class="yer">@rota.Nereye</span>
+                        </div>
+                    </div>
+                    <div class="flight-details">
+                        @{
+                            TimeSpan fark = rota.VarisZamani - rota.KalkisZamani;
+                            string ucusSuresi = String.Format("{0}s {1}dk", fark.Hours, fark.Minutes);
+                        }
+                        <span>Uçuş Tarihi: @rota.Tarih.ToString("dd.MM.yyyy")</span>
+                        <span>Uçuş Süresi: @ucusSuresi</span>
+                    </div>
+                    <div>
+                        <span>Uçak tipi: @rota.UcakTipi</span>
+                    </div>
+                </div>
+            </a>
+
+        }
+    @*     if (rota.Nereden != nereden && rota.Nereye != nereye && rota.Tarih != tarih)
+        {
+
+            <h1 style="text-align:center; margin-top:30px; color:red;">Aradığınız Kriterlere Uygun Seferimiz Yoktur. İyi Günler Dileriz.</h1>
+            <a href="@Url.Action("Hizmetler", "Hizmetler")"><input type="button" value="Geri Dön" style="background-color:green; display:block; margin:auto;" /></a>
+        } *@
+    }
+
+</body>
+</html>
