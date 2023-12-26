@@ -1,0 +1,95 @@
+﻿@model Uyeler
+
+<html>
+<head>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/UyeOl.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SkyWander_Airlines.styles.css" asp-append-version="true" />
+
+</head>
+
+<body>
+
+  
+
+
+    <div id="arkaPlan-2"> </div>
+   
+    <div class="form">
+        <form class="row g-3 alan" asp-action="UyeOl" asp-controller="Uye" method="post">
+            <label style="text-align:center; font-weight:600;font-size:20px">Üyelik Bilgileri</label>
+            <div class="col-6">
+                <label for="Ad" class="form-label">Ad</label>
+                <input type="text" class="form-control" id="Ad" name="Ad" placeholder="Ömer" required>
+            </div>
+            <div class="col-6">
+                <label for="Soyad" class="form-label">Soyad</label>
+                <input type="text" class="form-control" id="Soyad" name="Soyad" placeholder="Yılmaz" required>
+            </div>
+            <div class="col-6">
+                <label for="Telefon" class="form-label">Telefon</label>
+                <input type="text" class="form-control" id="Telefon" name="Telefon" placeholder="05..." required>
+            </div>
+
+            <div class="col-6">
+                <label for="Yas" class="form-label">Doğum Tarihi</label>
+                <input type="date" class="form-control" id="Yas" name="DogumTarihi" required>
+            </div>
+
+
+            <div class="col-md-6">
+                <label for="inputEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="inputEmail" name="Email" required>
+            </div>
+            <div class="col-md-6">
+                <label for="inputPassword" class="form-label">Şifre</label>
+                <input type="password" class="form-control" id="inputPassword" name="Sifre" required>
+            </div>
+        
+            <div class="col-md-6">
+                <label for="ulke" class="form-label">Ülke</label>
+                <select id="ulke" name="Ulke" class="form-select" required>
+                    <option value="Türkiye" selected>Türkiye</option>
+                    <option value="Almanya">Almanya</option>
+                    <option value="Amerika">Amerika</option>
+                    <option value="Rusya">Rusya</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="sehir" class="form-label">Şehir</label>
+                <select id="sehir" name="Sehir" class="form-select" required>
+                    <option value="Ankara" selected>Ankara</option>
+                    <option value="Berlin">Berlin</option>
+                    <option value="Washington">Washington</option>
+                    <option value="Moskova">Moskova</option>
+                </select>
+            </div>
+
+            <div class="col-12">
+                <label for="inputAddress" class="form-label">Adres</label>
+                <input type="text" class="form-control" id="inputAddress" name="Adres" placeholder="Yılmaz Sokak ..." required>
+            </div>
+
+
+            <div class="col-12">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck" required>
+                    <label class="form-check-label" for="gridCheck">
+                        Okudum, onaylıyorum.
+                    </label>
+                </div>
+            </div>
+
+          
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Kayıt Ol</button>
+            </div>
+
+
+        </form>
+    </div>
+
+</body>
+
+</html>

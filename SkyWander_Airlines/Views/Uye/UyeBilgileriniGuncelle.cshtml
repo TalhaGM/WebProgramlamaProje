@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Giriş Yap";
+    Layout = $"~/Views/Shared/_KullaniciLayout.cshtml";
+}
+
+@model Uyeler
+<html>
+<head>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/GirisYap.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SkyWander_Airlines.styles.css" asp-append-version="true" />
+
+</head>
+
+<body>
+  
+
+    <div id="arkaPlan-3">
+        <form class="yazi" asp-action="UyeBilgileriniGuncelle" asp-controller="Uye" method="post">
+            <div class="d-flex align-items-center" style="height: 100vh;">
+                <div class="col-6 offset-3">
+                    <div class="mb-3 mx-auto" style="width:50%;">
+                        <input type="hidden" asp-for="ID" />
+                        <label for="inputEmail" class="form-label">E-Mail Adresi</label>
+                        <input type="email" class="form-control" id="inputEmail" name="Email" aria-describedby="emailHelp" required>
+                    </div>
+                    <div class="col-6 offset-3">
+                        <label for="inputPassword" class="form-label">Şifre</label>
+                        <input type="password" class="form-control" id="inputPassword" name="Sifre" required>
+                    </div>
+                    <div class=" mb-3 mx-auto mt-3" style="width:50%;">
+                        <button type="submit" class="btn btn-primary">Giriş Yap</button>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

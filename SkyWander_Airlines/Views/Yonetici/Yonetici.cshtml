@@ -1,0 +1,86 @@
+﻿@{
+    Layout = $"~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<html>
+<head>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/UyeOl.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SkyWander_Airlines.styles.css" asp-append-version="true" />
+
+</head>
+
+<body>
+
+    <div id="arkaPlan-2"> </div>
+
+    <div class="form">
+        <form class="row g-3 alan" asp-action="Yonetici" asp-controller="Yonetici" method="post">
+            <label style="text-align:center; font-weight:600;font-size:20px">Sefer Ayarla</label>
+
+            <div class="col-md-6">
+                <label for="nereden" class="form-label">Nereden</label>
+                <select id="nereden" name="Nereden" class="form-select">
+                    <option value="Ankara" selected>Ankara</option>
+                    <option value="Berlin">Berlin</option>
+                    <option value="Washington">Washington</option>
+                    <option value="Moskova">Moskova</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label for="nereye" class="form-label">Nereye</label>
+                <select id="nereye" name="Nereye" class="form-select">
+                    <option value="Ankara">Ankara</option>
+                    <option value="Berlin" selected>Berlin</option>
+                    <option value="Washington">Washington</option>
+                    <option value="Moskova">Moskova</option>
+                </select>
+            </div>
+
+            <div class="col-6">
+                <label for="tarih" class="form-label">Tarih</label>
+                <input type="date" class="form-control" id="tarih" name="Tarih">
+            </div>
+
+            <div class="col-6">
+                <label for="kalkisZamani" class="form-label">Kalkış Zamanı</label>
+                <input type="time" class="form-control" id="kalkisZamani" name="KalkisZamani">
+            </div>
+
+            <div class="col-6">
+                <label for="varisZamani" class="form-label">Varış Zamanı</label>
+                <input type="time" class="form-control" id="varisZamani" name="VarisZamani">
+            </div>
+
+
+            <div class="col-md-6">
+                <label for="ucakTipi" class="form-label">Uçak Tipi</label>
+                <select id="ucakTipi" name="UcakTipi" class="form-select">
+                    <option value="AİRBUS A319-100">AİRBUS A319-100</option>
+                    <option value="AİRBUS A330-200/300" selected>AİRBUS A330-200/300</option>
+                    <option value="BOİNG 737-400">BOİNG 737-400</option>
+                    <option value="BOİNG 737-800">BOİNG 737-800</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label for="kapasite" class="form-label">Kapasite</label>
+                <input type="text" name="Kapasite" id="kapasite" class="form-control" />
+            </div>
+
+            <input type="hidden" name="Durum" value="true" />
+
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Onayla</button>
+            </div>
+
+
+        </form>
+    </div>
+
+</body>
+
+</html>
