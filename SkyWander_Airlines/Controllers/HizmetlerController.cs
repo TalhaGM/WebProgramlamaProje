@@ -60,13 +60,47 @@ namespace SkyWander_Airlines.Controllers
 
         }
 
-      
+        public IActionResult Güvenlik(string Email, string Sifre)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                ViewBag.ErrorMessage = "Geçersiz kullanıcı adı veya şifre";
+                return RedirectToAction("GirisYap", "Home");
+            }
+
+            var kullanici = _context.Kullanici.FirstOrDefault(x => x.Email == Email);
+
+            if (kullanici != null && kullanici.Sifre == Sifre)
+            {
+                return View();
+            }
+
+            ViewBag.ErrorMessage = "Geçersiz kullanıcı adı veya şifre";
+            return RedirectToAction("GirisYap", "Home");
+
+        }
+
+
 
 
 
 
         [HttpPost]
         public IActionResult BiletAl(string Nereden, string Nereye, DateTime Tarih)
+        {
+            var guzergahlar = _context.Yonetici.ToList();
+
+            TempData["Nereden"] = Nereden;
+            TempData["Nereye"] = Nereye;
+            TempData["Tarih"] = Tarih;
+
+            return View(guzergahlar);
+        }
+
+
+
+        public IActionResult BiletIadeEt(string Nereden, string Nereye, DateTime Tarih)
         {
             var guzergahlar = _context.Yonetici.ToList();
 

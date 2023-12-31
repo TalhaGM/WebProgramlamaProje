@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Muhammed Yılmaz\\source\\repos\\SkyWander_Airlines\\SkyWander_Airlines\\SkyWander_Airlines.csproj": {}
+    "C:\\Users\\Muhammed Yılmaz\\Desktop\\github repo\\SkyWander_Airlines\\SkyWander_Airlines.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Muhammed Yılmaz\\source\\repos\\SkyWander_Airlines\\SkyWander_Airlines\\SkyWander_Airlines.csproj": {
+    "C:\\Users\\Muhammed Yılmaz\\Desktop\\github repo\\SkyWander_Airlines\\SkyWander_Airlines.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Muhammed Yılmaz\\source\\repos\\SkyWander_Airlines\\SkyWander_Airlines\\SkyWander_Airlines.csproj",
+        "projectUniqueName": "C:\\Users\\Muhammed Yılmaz\\Desktop\\github repo\\SkyWander_Airlines\\SkyWander_Airlines.csproj",
         "projectName": "SkyWander_Airlines",
-        "projectPath": "C:\\Users\\Muhammed Yılmaz\\source\\repos\\SkyWander_Airlines\\SkyWander_Airlines\\SkyWander_Airlines.csproj",
+        "projectPath": "C:\\Users\\Muhammed Yılmaz\\Desktop\\github repo\\SkyWander_Airlines\\SkyWander_Airlines.csproj",
         "packagesPath": "C:\\Users\\Muhammed Yılmaz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Muhammed Yılmaz\\source\\repos\\SkyWander_Airlines\\SkyWander_Airlines\\obj\\",
+        "outputPath": "C:\\Users\\Muhammed Yılmaz\\Desktop\\github repo\\SkyWander_Airlines\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
