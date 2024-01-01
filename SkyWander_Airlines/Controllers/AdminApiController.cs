@@ -71,27 +71,8 @@ namespace SkyWander_Airlines.Controllers
             return NoContent();
         }
 
-        public async Task<IActionResult> SeferGetir(int id)
-        {
-            var sefer = await _context.Rota.FindAsync(id);
 
-            if (sefer == null)
-            {
-                return NotFound();
-            }
-
-
-            var biletler = await _context.BiletBilgisi.Where(b => b.RotaId == id).ToListAsync();
-            foreach (var bilet in biletler)
-            {
-                bilet.Durum = false;
-                await _context.SaveChangesAsync();
-            }
-
-            return NoContent();
-        }
-
-
+   
 
     }
 }
